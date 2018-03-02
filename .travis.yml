@@ -1,0 +1,12 @@
+sudo: true
+dist: trusty
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - docker build -t csgo-server-python .
+      - docker images
+      - docker tag csgo-server-python $DOCKER_USERNAME/csgo-server-python
+      - docker push $DOCKER_USERNAME/csgo-server-python
