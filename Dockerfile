@@ -1,13 +1,6 @@
 FROM ubuntu:16.04
 MAINTAINER MichaelPak
 
-ARG SERVER_PORT
-ARG TICK_RATE
-ARG MAX_PLAYERS
-ARG MAP
-ARG GAME_TYPE
-ARG GAME_MODE
-
 ENV USER steam
 ENV HOME /home/$USER
 ENV SERVER $HOME/server
@@ -28,5 +21,4 @@ EXPOSE $SERVER_PORT/udp
 
 WORKDIR $SERVER
 
-ENTRYPOINT ["sh", "-c", "csgo/srcds_run"]
-CMD ["-game csgo", "-console", "-tickrate $TICK_RATE", "-port $SERVER_PORT", "-maxplayers_override $MAX_PLAYERS", "+game_type $GAME_TYPE", "+game_mode $GAME_MODE", "+map $MAP", "+sv_steamaccount $TOKEN"]
+ENTRYPOINT ["csgo/srcds_run"]
