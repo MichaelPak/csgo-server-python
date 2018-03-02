@@ -17,8 +17,6 @@ RUN mkdir $SERVER && cd $SERVER \
     && tar -xvzf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz \
     && ./steamcmd.sh +login anonymous +force_install_dir ./csgo +app_update 740 validate +quit
 
-EXPOSE $SERVER_PORT/udp
-
 WORKDIR $SERVER
 
 ENTRYPOINT ["csgo/srcds_run"]
