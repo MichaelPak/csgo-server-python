@@ -6,13 +6,7 @@ language: minimal
 services:
   - docker
 
-before_install:
-  - df -h
-  - git submodule update --init --recursive
-  - df -h
-
 script:
-  - df -h
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker build -t csgo-server-python .
   - docker images
