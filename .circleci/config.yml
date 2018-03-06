@@ -26,6 +26,7 @@ jobs:
           command: |
             mkdir -p /caches
             docker save -o /caches/csgo-server-python.tar csgo-server-python
+          no_output_timeout: 20m
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
