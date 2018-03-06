@@ -12,6 +12,7 @@ jobs:
             - v1-{{ .Branch }}
           paths:
             - /caches/csgo-server-python.tar
+          no_output_timeout: 20m
       - run:
           name: Load Docker image layer cache
           command: |
@@ -34,8 +35,8 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
-              docker tag csgo-server-python $DOCKER_USERNAME/csgo-server-python
-              docker push $DOCKER_USERNAME/csgo-server-python
-            fi
+            echo $DOCKER_USER
+            echo $DOCKER_PASS
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker tag csgo-server-python $DOCKER_USER/csgo-server-python
+            docker push $DOCKER_USER/csgo-server-python
