@@ -13,14 +13,6 @@ jobs:
           paths:
             - /caches/csgo-server-python.tar
       - run:
-          name: Test env 1
-          command: |
-            echo $DOCKER_USERNAME
-      - run:
-          name: Test env 2
-          command: |
-            echo "${$DOCKER_USERNAME}"
-      - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
