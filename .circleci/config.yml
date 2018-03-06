@@ -1,17 +1,50 @@
-machine:
-  services:
-    - docker
-
-dependencies:
-  override:
-    - docker info
-    - docker build --rm=false -t csgo-server-python .
-    - docker tag csgo-server-python $DOCKER_USERNAME/csgo-server-python
-
-deployment:
-  hub:
-    branch: master
-    commands:
-      - docker images
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
-      - docker push $DOCKER_USERNAME/csgo-server-python
+version: 2
+jobs:
+  build:
+    working_directory: /csgo-server-python
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/csgo-server-python.tar
+      - run:
+          name: Test env 1
+          command: |
+            echo $DOCKER_USERNAME
+      - run:
+          name: Test env 2
+          command:
+            | echo "${$DOCKER_USERNAME}"
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/csgo-server-python.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build --cache-from=csgo-server-python -t csgo-server-python .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/csgo-server-python.tar csgo-server-python
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/csgo-server-python.tar
+      - deploy:
+          name: Push application Docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+              docker tag csgo-server-python $DOCKER_USERNAME/csgo-server-python
+              docker push $DOCKER_USERNAME/csgo-server-python
+            fi
