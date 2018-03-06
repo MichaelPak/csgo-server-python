@@ -1,0 +1,3 @@
+[submodule "Source.Python"]
+	path = Source.Python
+	url = https://github.com/Source-Python-Dev-Team/Source.Python.git
