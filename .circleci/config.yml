@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build --rm=false -t csgo-server-python .
+    - docker tag csgo-server-python $DOCKER_USERNAME/csgo-server-python
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker images
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS
+      - docker push $DOCKER_USERNAME/csgo-server-python
