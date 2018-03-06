@@ -12,12 +12,12 @@ jobs:
             - v1-{{ .Branch }}
           paths:
             - /caches/csgo-server-python.tar
-          no_output_timeout: 20m
       - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
             docker load -i /caches/csgo-server-python.tar | true
+          no_output_timeout: 20m
       - run:
           name: Build application Docker image
           command: |
