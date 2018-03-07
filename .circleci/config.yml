@@ -19,9 +19,7 @@ jobs:
       - run:
           name: Build Source.Python
           command: |
-            cd Source.Python/src/
-            chmod a+x Build.sh
-            bash ./Source.Python/src/Build.sh csgo
+            ./Source.Python/src/Build.sh csgo
       - run:
           name: Load Docker image layer cache
           command: |
