@@ -16,7 +16,7 @@ jobs:
           name: Update Source.Python
           command: |
             git submodule update --init --recursive
-      -run:
+      - run:
           name: Build Source.Python
           command: |
             cd Source.Python/src/
