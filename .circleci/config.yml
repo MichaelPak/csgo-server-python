@@ -21,7 +21,7 @@ jobs:
           command: |
             cd Source.Python/src/
             chmod a+x Build.sh
-            /bin/bash ./Source.Python/src/Build.sh csgo
+            bash ./Source.Python/src/Build.sh csgo
       - run:
           name: Load Docker image layer cache
           command: |
@@ -45,8 +45,6 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            echo $DOCKER_USER
-            echo $DOCKER_PASS
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker tag csgo-server-python $DOCKER_USER/csgo-server-python
             docker push $DOCKER_USER/csgo-server-python
