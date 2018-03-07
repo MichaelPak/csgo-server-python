@@ -13,6 +13,16 @@ jobs:
           paths:
             - /caches/csgo-server-python.tar
       - run:
+          name: Update Source.Python
+          command: |
+            git submodule update --init --recursive
+      -run:
+          name: Build Source.Python
+          command: |
+            cd Source.Python/src/
+            chmod a+x Build.sh
+            ./Build.sh csgo
+      - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
