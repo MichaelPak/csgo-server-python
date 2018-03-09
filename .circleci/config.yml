@@ -19,8 +19,9 @@ jobs:
       - run:
           name: Build Source.Python
           command: |
-            chmod a+x Source.Python/src/Build.sh
-            cd Source.Python/src/ && ./Build.sh csgo
+            chmod +x Build.sh
+            ./Build.sh csgo
+          working_directory: Source.Python/src/
       - run:
           name: Find csgo build
           command: |
