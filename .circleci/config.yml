@@ -16,6 +16,15 @@ jobs:
             sudo apt update
             sudo apt install -y wget
       - run:
+          name: Lab
+          command: |
+            ls -l ~/
+            ls -l ~/csgo-server-python/
+            ls -l ~/csgo-server-python/Source.Python/
+            ls -l ~/csgo-server-python/Source.Python/addons/
+            ls -l ~/csgo-server-python/Source.Python/addons/source-python/
+            ls -l ~/csgo-server-python/Source.Python/addons/source-python/bin/
+      - run:
           name: Download latest build of Source.Python
           command: |
             wget 'http://builds.sourcepython.com/job/Source.Python%20-%20Building/game=csgo,label=master/lastSuccessfulBuild/artifact/src/Builds/Linux/csgo/*zip*/csgo.zip'
