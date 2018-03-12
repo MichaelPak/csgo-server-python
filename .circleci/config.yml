@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/csgo-server-python
     machine:
       image: circleci/classic:latest
     steps:
