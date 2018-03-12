@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /csgo-server-python
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: ubuntu:16.04
     steps:
       - checkout
       - setup_remote_docker
