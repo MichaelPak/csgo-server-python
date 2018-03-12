@@ -19,18 +19,19 @@ jobs:
           name: Lab
           command: |
             ls -l ~/
-            ls -l ~/csgo-server-python/
-            ls -l ~/csgo-server-python/Source.Python/
-            ls -l ~/csgo-server-python/Source.Python/addons/
-            ls -l ~/csgo-server-python/Source.Python/addons/source-python/
-            ls -l ~/csgo-server-python/Source.Python/addons/source-python/bin/
+            ls -l ~/project/
+            ls -l ~/project/csgo-server-python/
+            ls -l ~/project/csgo-server-python/Source.Python/
+            ls -l ~/project/csgo-server-python/Source.Python/addons/
+            ls -l ~/project/csgo-server-python/Source.Python/addons/source-python/
+            ls -l ~/project/csgo-server-python/Source.Python/addons/source-python/bin/
       - run:
           name: Download latest build of Source.Python
           command: |
             wget 'http://builds.sourcepython.com/job/Source.Python%20-%20Building/game=csgo,label=master/lastSuccessfulBuild/artifact/src/Builds/Linux/csgo/*zip*/csgo.zip'
             unzip csgo.zip
-            mv csgo/core.so ~/csgo-server-python/Source.Python/addons/source-python/bin/
-            mv csgo/source-python.so ~/csgo-server-python/Source.Python/addons/
+            mv csgo/core.so ~/project/csgo-server-python/Source.Python/addons/source-python/bin/
+            mv csgo/source-python.so ~/project/csgo-server-python/Source.Python/addons/
           working_directory: builds
       - run:
           name: Load Docker image layer cache
