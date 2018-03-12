@@ -16,6 +16,10 @@ jobs:
             sudo apt update
             sudo apt install -y wget
       - run:
+          name: Update Source.Python
+          command: |
+            git submodule update --recursive
+      - run:
           name: Lab
           command: |
             ls -l ~/
