@@ -20,11 +20,10 @@ jobs:
           command: |
             ls -l ~/
             ls -l ~/project/
-            ls -l ~/project/csgo-server-python/
-            ls -l ~/project/csgo-server-python/Source.Python/
-            ls -l ~/project/csgo-server-python/Source.Python/addons/
-            ls -l ~/project/csgo-server-python/Source.Python/addons/source-python/
-            ls -l ~/project/csgo-server-python/Source.Python/addons/source-python/bin/
+            ls -l ~/project/Source.Python/
+            ls -l ~/project/Source.Python/addons/
+            ls -l ~/project/Source.Python/addons/source-python/
+            ls -l ~/project/Source.Python/addons/source-python/bin/
       - run:
           name: Download latest build of Source.Python
           command: |
