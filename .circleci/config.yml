@@ -14,9 +14,9 @@ jobs:
       - run:
           name: Install requirements
           command: |
-            apt update
-            apt upgrade -y
-            apt install -y wget
+            sudo apt update
+            sudo apt upgrade -y
+            sudo apt install -y wget
       - run:
           name: Download latest build of Source.Python
           command: |
@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Save Docker image layer cache
           command: |
-            mkdir -p /caches
+            mkdir -p ~/caches
             docker save -o ~/caches/csgo-server-python.tar csgo-server-python
           no_output_timeout: 20m
       - save_cache:
