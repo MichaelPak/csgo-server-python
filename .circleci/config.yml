@@ -15,15 +15,14 @@ jobs:
           name: Install requirements
           command: |
             sudo apt update
-            sudo apt upgrade -y
             sudo apt install -y wget
       - run:
           name: Download latest build of Source.Python
           command: |
             wget 'http://builds.sourcepython.com/job/Source.Python%20-%20Building/game=csgo,label=master/lastSuccessfulBuild/artifact/src/Builds/Linux/csgo/*zip*/csgo.zip'
             unzip csgo.zip
-            mv csgo/core.so /csgo-server-python/Source.Python/addons/source-python/bin/
-            mv csgo/source-python.so /csgo-server-python/Source.Python/addons/
+            mv csgo/core.so ~/csgo-server-python/Source.Python/addons/source-python/bin/
+            mv csgo/source-python.so ~/csgo-server-python/Source.Python/addons/
           working_directory: builds
       - run:
           name: Load Docker image layer cache
