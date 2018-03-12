@@ -13,19 +13,19 @@ jobs:
           paths:
             - /caches/csgo-server-python.tar
       - run:
-          name: Update Source.Python
+          name: Install requirements
           command: |
-            git submodule update --init --recursive
+            apt update
+            apt upgrade
+            apt install -y wget docker-engine
       - run:
-          name: Build Source.Python
+          name: Download latest build of Source.Python
           command: |
-            chmod +x Build.sh
-            ./Build.sh csgo
-          working_directory: Source.Python/src/
-      - run:
-          name: Find csgo build
-          command: |
-            ls -l SourcePython/src/Builds/Linux/csgo/Release
+            wget 'http://builds.sourcepython.com/job/Source.Python%20-%20Building/game=csgo,label=master/lastSuccessfulBuild/artifact/src/Builds/Linux/csgo/*zip*/csgo.zip'
+            unzip csgo.zip
+            mv csgo/core.so /csgo-server-python/Source.Python/addons/source-python/bin/
+            mv csgo/source-python.so /csgo-server-python/Source.Python/addons/
+          working_directory: builds
       - run:
           name: Load Docker image layer cache
           command: |
