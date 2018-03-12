@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /csgo-server-python
+    working_directory: ~/csgo-server-python
     machine:
       image: circleci/classic:latest
     steps:
@@ -10,7 +10,7 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/csgo-server-python.tar
+            - ~/caches/csgo-server-python.tar
       - run:
           name: Install requirements
           command: |
@@ -29,7 +29,7 @@ jobs:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
-            docker load -i /caches/csgo-server-python.tar | true
+            docker load -i ~/caches/csgo-server-python.tar | true
           no_output_timeout: 20m
       - run:
           name: Build application Docker image
@@ -39,12 +39,12 @@ jobs:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/csgo-server-python.tar csgo-server-python
+            docker save -o ~/caches/csgo-server-python.tar csgo-server-python
           no_output_timeout: 20m
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/csgo-server-python.tar
+            - ~/caches/csgo-server-python.tar
       - deploy:
           name: Push application Docker image
           command: |
