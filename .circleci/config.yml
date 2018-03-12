@@ -16,7 +16,7 @@ jobs:
           name: Install requirements
           command: |
             apt update
-            apt upgrade
+            apt upgrade -y
             apt install -y wget docker-engine
       - run:
           name: Download latest build of Source.Python
