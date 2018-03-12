@@ -19,6 +19,7 @@ jobs:
           name: Update Source.Python
           command: |
             git submodule update --recursive
+          working_directory: ~/project/
       - run:
           name: Lab
           command: |
