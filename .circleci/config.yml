@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     working_directory: /csgo-server-python
-    docker:
-      - image: ubuntu:16.04
+    machine:
+      image: circleci/classic:latest
     steps:
       - checkout
       - setup_remote_docker
@@ -17,15 +17,7 @@ jobs:
           command: |
             apt update
             apt upgrade -y
-            apt install -y curl
-      - run:
-          name: Install docker
-          command: |
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-            apt-key fingerprint 0EBFCD88
-            add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            apt update
-            apt install -y docker-ce
+            apt install -y wget
       - run:
           name: Download latest build of Source.Python
           command: |
