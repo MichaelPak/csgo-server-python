@@ -20,11 +20,11 @@ RUN mkdir $SERVER && cd $SERVER \
 
 COPY Source.Python $SOURCE
 
-RUN cp -r $SOURCE/addons/* $SERVER/csgo/csgo/addons/ \
-    && cp -r $SOURCE/cfg/* $SERVER/csgo/csgo/cfg/ \
-    && cp -r $SOURCE/logs/* $SERVER/csgo/csgo/logs/ \
-    && cp -r $SOURCE/resource/* $SERVER/csgo/csgo/resource/ \
-    && cp -r $SOURCE/sound/* $SERVER/csgo/csgo/sound/ \
+RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
+    && cp -r $SOURCE/cfg $SERVER/csgo/csgo/ \
+    && cp -r $SOURCE/logs $SERVER/csgo/csgo/ \
+    && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
+    && cp -r $SOURCE/sound $SERVER/csgo/csgo/ \
 
 WORKDIR $SERVER
 
