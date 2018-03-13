@@ -7,7 +7,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-{{ .Branch }}
+            - $CACHE_VERSION-{{ .Branch }}
           paths:
             - ~/caches/csgo-server-python.tar
       - run:
