@@ -26,6 +26,9 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/sound $SERVER/csgo/csgo/
 
+EXPOSE 27015
+
 WORKDIR $SERVER
 
-ENTRYPOINT ["csgo/srcds_run"]
+ENTRYPOINT ['csgo/srcds_run']
+CMD ['-game', 'csgo', '-console', '-usercon', '+game_type', '0', '+game_mode', '1', '+mapgroup', 'mg_active', '+map', 'de_cache']
