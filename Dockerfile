@@ -24,8 +24,7 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/cfg $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/logs $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
-    && cp -r $SOURCE/sound $SERVER/csgo/csgo/ \
-    && chmod -R 777 $SERVER/csgo/
+    && cp -r $SOURCE/sound $SERVER/csgo/csgo/
 
 EXPOSE 27015
 
