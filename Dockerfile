@@ -6,8 +6,8 @@ ENV HOME /home/$USER
 ENV SERVER $HOME/server
 ENV SOURCE $HOME/source
 
-RUN apt-get -y update \
-    && apt-get -y upgrade \
+RUN dpkg --add-architecture \
+    && i386 apt-get -y update \
     && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -m $USER
