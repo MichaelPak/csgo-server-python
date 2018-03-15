@@ -8,7 +8,7 @@ ENV SOURCE $HOME/source
 
 RUN apt-get -y update \
     && apt-get -y upgrade \
-    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g libffi6 \
+    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -m $USER
 
@@ -30,5 +30,5 @@ EXPOSE 27015
 
 WORKDIR $SERVER/csgo
 
-ENTRYPOINT ['./srcds_run']
+ENTRYPOINT ['srcds_run']
 CMD ['-game', 'csgo', '-console', '-usercon', '+game_type', '0', '+game_mode', '1', '+mapgroup', 'mg_active', '+map', 'de_cache']
