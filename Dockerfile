@@ -30,5 +30,5 @@ EXPOSE 27015
 
 WORKDIR $SERVER/csgo
 
-ENTRYPOINT ['srcds_run']
+ENTRYPOINT ['./srcds_run']
 CMD ['-game', 'csgo', '-console', '-usercon', '+game_type', '0', '+game_mode', '1', '+mapgroup', 'mg_active', '+map', 'de_cache']
