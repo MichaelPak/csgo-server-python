@@ -7,7 +7,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-{{ .Branch }}
+            - v0.1-{{ .Branch }}
           paths:
             - ~/caches/csgo-server-python.tar
       - run:
@@ -46,7 +46,7 @@ jobs:
             docker save -o ~/caches/csgo-server-python.tar csgo-server-python
           no_output_timeout: 30m
       - save_cache:
-          key: v1-{{ .Branch }}-{{ epoch }}
+          key: v0.1-{{ .Branch }}-{{ epoch }}
           paths:
             - ~/caches/csgo-server-python.tar
       - deploy:
