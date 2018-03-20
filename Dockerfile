@@ -7,7 +7,8 @@ ENV SERVER $HOME/server
 ENV SOURCE $HOME/source
 
 RUN dpkg --add-architecture i386 \
-    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt install -y software-properties-common python-software-properties \
+    && add-apt-repository ppa:jonathonf/python-3.6 \
     && apt-get -y update \
     && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 python3.6 python3-pip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
