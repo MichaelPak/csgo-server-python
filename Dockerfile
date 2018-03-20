@@ -11,7 +11,7 @@ RUN dpkg --add-architecture i386 \
     && apt-get install -y software-properties-common python-software-properties \
     && add-apt-repository ppa:jonathonf/python-3.6 \
     && apt-get -y update \
-    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 python3.6 python3-pip \
+    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 python3.6 python3-pip vim \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -m $USER
 
