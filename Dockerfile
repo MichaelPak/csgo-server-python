@@ -29,6 +29,16 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/sound $SERVER/csgo/csgo/
 
+COPY requirements.txt $HOME
+
+RUN pip3 install --upgrade pip \
+    && pip3 install --user virtualenv \
+    && python3 $HOME/.local/lib/python3.5/site-packages/virtualenv.py -p python3.6 venv \
+    && source venv/bin/activate \
+    && pip install -r $HOME/requirements.txt \
+    && mv -nv venv/lib/python3.6/site-packages/* server/csgo/csgo/addons/source-python/packages/site-packages/ \
+    && rm -rf $HOME/venv
+
 EXPOSE 27015
 
 WORKDIR $SERVER/csgo
