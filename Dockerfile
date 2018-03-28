@@ -32,11 +32,11 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
 COPY requirements.txt $HOME
 
 RUN pip3 install --upgrade pip \
-    && pip3 install --user virtualenv $HOME/venv \
+    && pip3 install --user virtualenv \
     && python3 $HOME/.local/lib/python3.5/site-packages/virtualenv.py -p python3.6 venv \
-    && source venv/bin/activate \
+    && source $HOME/venv/bin/activate \
     && pip install -r $HOME/requirements.txt \
-    && mv -nv venv/lib/python3.6/site-packages/* server/csgo/csgo/addons/source-python/packages/site-packages/ \
+    && mv -nv $HOME/venv/lib/python3.6/site-packages/* $SERVER/csgo/csgo/addons/source-python/packages/site-packages/ \
     && rm -rf $HOME/venv
 
 EXPOSE 27015
