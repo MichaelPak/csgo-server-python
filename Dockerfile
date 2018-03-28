@@ -32,7 +32,7 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
 COPY requirements.txt $HOME
 
 RUN pip3 install --upgrade pip \
-    && pip3 install --user virtualenv \
+    && pip3 install --user virtualenv $HOME/venv \
     && python3 $HOME/.local/lib/python3.5/site-packages/virtualenv.py -p python3.6 venv \
     && source venv/bin/activate \
     && pip install -r $HOME/requirements.txt \
