@@ -34,7 +34,7 @@ COPY requirements.txt $HOME
 RUN pip3 install --upgrade pip \
     && pip3 install --user virtualenv \
     && python3 $HOME/.local/lib/python3.5/site-packages/virtualenv.py -p python3.6 $HOME/venv \
-    && source $HOME/venv/bin/activate \
+    && . $HOME/venv/bin/activate \
     && pip install -r $HOME/requirements.txt \
     && mv -nv $HOME/venv/lib/python3.6/site-packages/* $SERVER/csgo/csgo/addons/source-python/packages/site-packages/ \
     && rm -rf $HOME/venv
