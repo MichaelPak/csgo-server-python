@@ -34,4 +34,6 @@ jobs:
             version=$(git log -1 --pretty=%B)
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker tag csgo-server-python $DOCKER_USER/csgo-server-python:$version
+            docker tag csgo-server-python $DOCKER_USER/csgo-server-python:latest
             docker push $DOCKER_USER/csgo-server-python:$version
+            docker push $DOCKER_USER/csgo-server-python:latest
