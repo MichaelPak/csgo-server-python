@@ -37,10 +37,3 @@ jobs:
             docker tag csgo-server-python $DOCKER_USER/csgo-server-python:latest
             docker push $DOCKER_USER/csgo-server-python:$version
             docker push $DOCKER_USER/csgo-server-python:latest
-workflows:
-  version: 2
-  tagged-build:
-    jobs:
-      - build:
-	    tags:
-	      only: /^[0-9]\.[0-9]\.[0-9]/
