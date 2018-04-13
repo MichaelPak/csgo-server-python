@@ -31,6 +31,7 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
+            version=$(git log -1 --pretty=%B)
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker tag csgo-server-python $DOCKER_USER/csgo-server-python:0.0.1
-            docker push $DOCKER_USER/csgo-server-python:0.0.1
+            docker tag csgo-server-python $DOCKER_USER/csgo-server-python:$version
+            docker push $DOCKER_USER/csgo-server-python:$version
