@@ -1,6 +1,6 @@
 CS:GO server in Docker with Source.Python
 ---
-[![](https://images.microbadger.com/badges/version/michaelpak/csgo-server-python.svg)](https://microbadger.com/images/michaelpak/csgo-server-python) [![](https://images.microbadger.com/badges/image/michaelpak/csgo-server-python.svg)](https://microbadger.com/images/michaelpak/csgo-server-python)
+[![](https://images.microbadger.com/badges/version/michaelpak/csgo-server-python.svg)](https://hub.docker.com/r/michaelpak/csgo-server-python/) [![](https://images.microbadger.com/badges/image/michaelpak/csgo-server-python.svg)](https://microbadger.com/images/michaelpak/csgo-server-python)
 
 ## Introduction
 This docker image is based on [phusion's base image] and contains pre-installed [Source.Python].
