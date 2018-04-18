@@ -1,5 +1,4 @@
-FROM ubuntu:16.04
-MAINTAINER MichaelPak
+FROM debian:stable-slim
 
 ENV USER steam
 ENV HOME /home/$USER
