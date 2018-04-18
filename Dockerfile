@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM phusion/baseimage:latest
 
 ENV USER steam
 ENV HOME /home/$USER
