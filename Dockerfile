@@ -10,7 +10,7 @@ RUN dpkg --add-architecture i386 \
     && apt-get install -y software-properties-common python-software-properties \
     && add-apt-repository ppa:jonathonf/python-3.6 \
     && apt-get -y update \
-    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 python3.6 python3-pip=9.0.3 \
+    && apt-get -y install lib32gcc1 wget net-tools lib32stdc++6 zlib1g:i386 libffi6:i386 python3.6 python3-pip \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -m $USER
 
@@ -30,7 +30,8 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
 
 COPY requirements.txt $HOME
 
-RUN pip3 install --user -t $SERVER/csgo/csgo/addons/source-python/packages/custom/ -r $HOME/requirements.txt
+RUN pip install --upgrade pip==9.0.3 \
+    && pip3 install --user -t $SERVER/csgo/csgo/addons/source-python/packages/custom/ -r $HOME/requirements.txt
 
 EXPOSE 27015
 
