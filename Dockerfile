@@ -31,7 +31,7 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
 COPY requirements.txt $HOME
 
 RUN pip3 install --upgrade pip==9.0.3 \
-    && pip3 install --user -t $SERVER/csgo/csgo/addons/source-python/packages/custom/ -r $HOME/requirements.txt
+    && pip3 install -t $SERVER/csgo/csgo/addons/source-python/packages/custom/ -r $HOME/requirements.txt
 
 EXPOSE 27015
 
