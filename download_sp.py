@@ -21,6 +21,9 @@ def get_url():
 
 
 def download(file_path, timeout=3):
+    if not os.path.exists(file_path):
+        os.makedirs(file_path)
+
     with urlopen(get_url(), timeout=timeout) as url:
         data = url.read()
 

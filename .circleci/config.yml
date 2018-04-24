@@ -1,16 +1,16 @@
 version: 2
 
 jobs:
-  build:
-    machine:
-      image: circleci/classic:latest
+
+  download_sp:
+    docker:
+      image: circleci/python:3.6
+    working_directory: ~/csgo-server-python
     steps:
       - checkout
       - run:
           name: Install requirements
           command: |
-            sudo apt update
-            sudo apt install -y wget python3-pip
             pip install requests
       - run:
           name: Download latest build of Source.Python
@@ -18,11 +18,22 @@ jobs:
             python download_sp.py source-python/
             unzip source-python/source-python.zip -d source-python/
             rm source-python/source-python.zip
-          working_directory: ~/project/
+      - persist_to_workspace:
+          root: .
+          paths: source-python
+
+  build_server:
+    machine:
+      image: circleci/classic:latest
+    working_directory: ~/csgo-server-python
+    steps:
+      - checkout
+      - attach_workspace:
+        at: ~/csgo-server-python
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=csgo-server-python -t csgo-server-python .
+            docker build -t csgo-server-python .
           no_output_timeout: 30m
       - deploy:
           name: Push application Docker image
@@ -30,10 +41,15 @@ jobs:
             version=$(git describe --abbrev=0)
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker tag csgo-server-python $DOCKER_USER/csgo-server-python:$version
+            docker tag csgo-server-python $DOCKER_USER/csgo-server-python:latest
             docker push $DOCKER_USER/csgo-server-python:$version
+            docker push $DOCKER_USER/csgo-server-python:latest
 
 workflows:
   version: 2
   build:
     jobs:
-      - build
+      - download_sp
+      - build_server:
+        requires:
+          - download_sp
