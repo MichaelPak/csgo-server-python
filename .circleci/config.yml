@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-        at: ~/csgo-server-python
+          at: ~/csgo-server-python
       - run:
           name: Build application Docker image
           command: |
