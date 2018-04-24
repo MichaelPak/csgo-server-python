@@ -10,20 +10,15 @@ jobs:
           name: Install requirements
           command: |
             sudo apt update
-            sudo apt install -y wget
-      - run:
-          name: Update Source.Python
-          command: |
-            git submodule update --init
-          working_directory: ~/project/
+            sudo apt install -y wget python3-pip
+            pip install requests
       - run:
           name: Download latest build of Source.Python
           command: |
-            wget 'http://builds.sourcepython.com/job/Source.Python%20-%20Building/game=csgo,label=master/lastSuccessfulBuild/artifact/src/Builds/Linux/csgo/*zip*/csgo.zip'
-            unzip csgo.zip
-            mv csgo/core.so ~/project/Source.Python/addons/source-python/bin/
-            mv csgo/source-python.so ~/project/Source.Python/addons/
-          working_directory: builds
+            python3 download_sp.py source-python/
+            unzip source-python/source-python.zip -d source-python/
+            rm source-python/source-python.zip
+          working_directory: ~/project/
       - run:
           name: Build application Docker image
           command: |

@@ -20,17 +20,18 @@ RUN mkdir $SERVER && cd $SERVER \
     && tar -xvzf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz \
     && ./steamcmd.sh +login anonymous +force_install_dir ./csgo +app_update 740 validate +quit
 
-COPY Source.Python $SOURCE
+COPY source-python $SOURCE
 
 RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/cfg $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/logs $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
-    && cp -r $SOURCE/sound $SERVER/csgo/csgo/
+    && cp -r $SOURCE/sound $SERVER/csgo/csgo/ \
+    && rm -rf $SOURCE
 
 COPY requirements.txt $HOME
 
-RUN pip3 install --upgrade pip \
+RUN pip3 install --upgrade pip==9.0.3 \
     && pip3 install -t $SERVER/csgo/csgo/addons/source-python/packages/custom/ -r $HOME/requirements.txt
 
 EXPOSE 27015
