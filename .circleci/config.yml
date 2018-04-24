@@ -1,10 +1,9 @@
 version: 2
 
 jobs:
-
   download_sp:
     docker:
-      image: circleci/python:3.6
+      - image: circleci/python:3.6
     working_directory: ~/csgo-server-python
     steps:
       - checkout
@@ -21,7 +20,6 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: source-python
-
   build_server:
     machine:
       image: circleci/classic:latest
