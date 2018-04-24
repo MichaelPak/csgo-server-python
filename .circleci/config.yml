@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Download latest build of Source.Python
           command: |
-            python3 download_sp.py source-python/
+            python download_sp.py source-python/
             unzip source-python/source-python.zip -d source-python/
             rm source-python/source-python.zip
           working_directory: ~/project/
