@@ -26,8 +26,7 @@ RUN cp -r $SOURCE/addons $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/cfg $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/logs $SERVER/csgo/csgo/ \
     && cp -r $SOURCE/resource $SERVER/csgo/csgo/ \
-    && cp -r $SOURCE/sound $SERVER/csgo/csgo/ \
-    && rm -rf $SOURCE
+    && cp -r $SOURCE/sound $SERVER/csgo/csgo/
 
 COPY requirements.txt $HOME
 
