@@ -18,7 +18,9 @@ USER $USER
 RUN mkdir $SERVER && cd $SERVER \
     && wget http://media.steampowered.com/client/steamcmd_linux.tar.gz \
     && tar -xvzf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz \
-    && ./steamcmd.sh +login anonymous +force_install_dir ./csgo +app_update 740 validate +quit
+    && ./steamcmd.sh +login anonymous +force_install_dir ./csgo +app_update 740 validate +quit \
+    && mkdir $HOME/.steam/sdk32 \
+    && ln -s $SERVER/linux32/steamclient.so $HOME/.steam/sdk32/steamclient.so
 
 COPY source-python $SOURCE
 
