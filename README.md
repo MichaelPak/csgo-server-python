@@ -1,6 +1,7 @@
 CS:GO server in Docker with Source.Python
 ---
-[![CircleCI](https://circleci.com/gh/MichaelPak/csgo-server-python/tree/master.svg?style=svg&circle-token=dbc738f3656012039f16a3f747df0f06847da4e2)](https://circleci.com/gh/MichaelPak/csgo-server-python/tree/master) [![](https://images.microbadger.com/badges/version/michaelpak/csgo-server-python.svg)](https://hub.docker.com/r/michaelpak/csgo-server-python/) [![](https://images.microbadger.com/badges/image/michaelpak/csgo-server-python.svg)](https://microbadger.com/images/michaelpak/csgo-server-python)
+[![CircleCI](https://circleci.com/gh/MichaelPak/csgo-server-python/tree/master.svg?style=svg&circle-token=dbc738f3656012039f16a3f747df0f06847da4e2)](https://circleci.com/gh/MichaelPak/csgo-server-python/tree/master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMichaelPak%2Fcsgo-server-python.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FMichaelPak%2Fcsgo-server-python?ref=badge_shield)
+[![](https://images.microbadger.com/badges/version/michaelpak/csgo-server-python.svg)](https://hub.docker.com/r/michaelpak/csgo-server-python/) [![](https://images.microbadger.com/badges/image/michaelpak/csgo-server-python.svg)](https://microbadger.com/images/michaelpak/csgo-server-python)
 
 ## Introduction
 This docker image is based on [phusion's base image] and contains pre-installed [Source.Python].
@@ -20,3 +21,6 @@ $ docker run -it --name csgo_srv
 
    [phusion's base image]: <https://github.com/phusion/baseimage-docker>
    [Source.Python]: <https://github.com/Source-Python-Dev-Team/Source.Python>
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FMichaelPak%2Fcsgo-server-python.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FMichaelPak%2Fcsgo-server-python?ref=badge_large)
