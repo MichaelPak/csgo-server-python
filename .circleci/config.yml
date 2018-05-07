@@ -44,7 +44,7 @@ workflows:
   version: 2
   un-tagged-build:
     jobs:
-      - download_sp
+      - download_sp:
           filters:
             tags:
               ignore: /^.*/
@@ -54,10 +54,9 @@ workflows:
           filters:
             tags:
               ignore: /^.*/
-
   tagged-build:
     jobs:
-      - download_sp
+      - download_sp:
           filters:
             branches:
               ignore: /.*/
