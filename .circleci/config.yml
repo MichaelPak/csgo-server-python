@@ -42,9 +42,32 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  un-tagged-build:
     jobs:
       - download_sp
+          filters:
+            tags:
+              ignore: /^.*/
       - build_server:
           requires:
             - download_sp
+          filters:
+            tags:
+              ignore: /^.*/
+
+  tagged-build:
+    jobs:
+      - download_sp
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/`
+      - build_server:
+          requires:
+            - download_sp
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/
