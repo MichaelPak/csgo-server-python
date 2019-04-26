@@ -3,21 +3,19 @@ import sys
 import requests
 from urllib.request import urlopen
 
-BASE_DOWNLOAD_URL = 'http://builds.sourcepython.com/job/Source.Python/lastSuccessfulBuild/artifact/'
-ARTIFACTS_URL = 'http://builds.sourcepython.com' \
-                '/job/Source.Python/lastSuccessfulBuild/api/json?tree=artifacts[relativePath]'
+BASE_URL = 'http://downloads.sourcepython.com'
+ARTIFACT_LIST = 'artifacts.txt'
 UPDATE_ZIP_FILE = 'source-python.zip'
 GAME_NAME = 'csgo'
 
 
 def get_url():
-    response = requests.get(url=ARTIFACTS_URL)
-    for artifact in response.json().get('artifacts'):
-        if GAME_NAME in artifact['relativePath']:
-            break
+    response = requests.get(url=os.path.join(BASE_URL, ARTIFACT_LIST))
+    for artifact in response.text.split('\n'):
+        if GAME_NAME in artifact:
+            return os.path.join(BASE_URL, artifact)
     else:
         raise RuntimeError
-    return os.path.join(BASE_DOWNLOAD_URL, artifact['relativePath'])
 
 
 def download(file_path, timeout=3):
