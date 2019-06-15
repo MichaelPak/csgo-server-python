@@ -42,31 +42,24 @@ jobs:
 
 workflows:
   version: 2
-  un-tagged-build:
-    jobs:
-      - download_sp:
+  build:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
           filters:
-            tags:
-              ignore: /^.*/
-      - build_server:
-          requires:
-            - download_sp
-          filters:
-            tags:
-              ignore: /^.*/
-  tagged-build:
+            branches:
+              only:
+                - master
     jobs:
       - download_sp:
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /v.*/`
+              only:
+                - master
       - build_server:
           requires:
             - download_sp
           filters:
             branches:
-              ignore: /.*/
-            tags:
-              only: /^.*/
+              only:
+                - master
