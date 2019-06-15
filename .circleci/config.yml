@@ -43,12 +43,24 @@ jobs:
 workflows:
   version: 2
   build:
-#    triggers:
-#      - schedule:
-#          cron: "0 0 * * *"
-#          filters:
-#            branches:
-#              only: master
+    jobs:
+      - download_sp:
+          filters:
+            branches:
+              only: master
+      - build_server:
+          requires:
+            - download_sp
+          filters:
+            branches:
+              only: master
+  cron_build:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: master
     jobs:
       - download_sp:
           filters:
