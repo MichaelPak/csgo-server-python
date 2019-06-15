@@ -48,18 +48,15 @@ workflows:
           cron: "0 0 * * *"
           filters:
             branches:
-              only:
-                - master
+              only: master
     jobs:
       - download_sp:
           filters:
             branches:
-              only:
-                - master
+              only: master
       - build_server:
           requires:
             - download_sp
           filters:
             branches:
-              only:
-                - master
+              only: master
